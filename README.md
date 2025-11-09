@@ -13,27 +13,22 @@
   在站点配置文件`_config.yml`或者主题配置文件`_config.butterfly.yml`中添加
 
   ```yaml
-    # hexo-butterfly-swiper
-    # see https://akilar.top/posts/8e1264d1/
-    swiper:
-      enable: true # 开关
-      priority: 5 #过滤器优先权
-      enable_page: / # 应用页面
-      exclude: #屏蔽页面
-        # - /posts/
-        # - /about/
-      timemode: date #date/updated
-      layout: # 挂载容器类型
-        type: id
-        name: recent-posts
-        index: 0
-      error_img: /img/default.png #封面图片加载失败的默认封面
-      insertposition: afterbegin
-      default_descr: 再怎么看我也不知道怎么描述它的啦！
-      swiper_css:  https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css #swiper css依赖
-      swiper_js: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js #swiper js依赖
-      custom_css: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css # 适配主题样式补丁
-      custom_js: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js # swiper初始化方法
+# hexo-butterfly-swiper
+# see https://akilar.top/posts/8e1264d1/
+swiper:
+  enable: true # 开关
+  priority: 5 #过滤器优先权
+  enable_page: all # 应用页面
+  timemode: date #date/updated
+  layout: # 挂载容器类型
+    type: id
+    name: recent-posts
+    index: 0
+  default_descr: 再怎么看我也不知道怎么描述它的啦！
+  swiper_css: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css #swiper css依赖
+  swiper_js: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js #swiper js依赖
+  custom_css: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css # 适配主题样式补丁
+  custom_js: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js # swiper初始化方法
   ```
 3. 参数释义
 
