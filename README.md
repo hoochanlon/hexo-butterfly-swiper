@@ -30,10 +30,10 @@
       error_img: /img/default.png #封面图片加载失败的默认封面
       insertposition: afterbegin
       default_descr: 再怎么看我也不知道怎么描述它的啦！
-      swiper_css: https://unpkg.zhimg.com/hexo-butterfly-swiper/lib/swiper.min.css #swiper css依赖
-      swiper_js: https://unpkg.zhimg.com/hexo-butterfly-swiper/lib/swiper.min.js #swiper js依赖
-      custom_css: https://unpkg.zhimg.com/hexo-butterfly-swiper/lib/swiperstyle.css # 适配主题样式补丁
-      custom_js: https://unpkg.zhimg.com/hexo-butterfly-swiper/lib/swiper_init.js # swiper初始化方法
+      swiper_css:  https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css #swiper css依赖
+      swiper_js: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js #swiper js依赖
+      custom_css: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css # 适配主题样式补丁
+      custom_js: https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js # swiper初始化方法
   ```
 3. 参数释义
 
