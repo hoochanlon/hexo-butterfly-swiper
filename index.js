@@ -38,7 +38,7 @@ hexo.extend.filter.register('after_generate', function () {
       layout_type: config.layout.type,
       layout_name: config.layout.name,
       layout_index: config.layout.index ? config.layout.index : 0,
-      error_img: config.error_img ? urlFor(config.error_img) : "https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif",
+      error_img: config.error_img ? urlFor(config.error_img) : "https://npm.elemecdn.com/akilar-candyassets/image/loading.gif",
       insertposition: config.insertposition ? config.insertposition : "afterbegin",
       swiper_list: swiper_list,
       default_descr: config.default_descr ? config.default_descr : "再怎么看我也不知道怎么描述它的啦！",
