@@ -1,9 +1,10 @@
 'use strict'
+
 // 全局声明插件代号
 const pluginname = 'butterfly_swiper'
 
 // 全局声明依赖
-const pug = require('pug')
+const pug = require('pug')  // 确保引入 pug 模块
 const path = require('path')
 const urlFor = require('hexo-util').url_for.bind(hexo)
 const util = require('hexo-util')
@@ -12,26 +13,20 @@ hexo.extend.filter.register('after_generate', function () {
   // 获取所有文章
   var posts_list = hexo.locals.get('posts').data;
   var swiper_list = []
+
   // 若文章的front_matter内设置了index和描述，则将其放到swiper_list内
   for (var item of posts_list) {
     if (item.swiper_index) {
-      swiper_list.push(item)
+      // 通过 urlFor 生成正确的路径，避免修改 item.path
+      let itemPath = urlFor(item.path).replace(/\/page\/\d+/, '');  // 去除分页路径
+      swiper_list.push({ ...item, path: itemPath });
     }
   }
-  // 对swiper_list进行处理，使其按照index大小进行排序
-  function sortNumber(a, b) {
-    return a.swiper_index - b.swiper_index
-  }
-  swiper_list = swiper_list.sort(sortNumber);
-  // 排序反转，使得数字越大越靠前
-  swiper_list = swiper_list.reverse();
 
-  // =====================================================================
-  // 首先获取整体的配置项名称
-  const config = hexo.config.swiper || hexo.theme.config.swiper
-  // 如果配置开启
-  if (!(config && config.enable)) return
-  // 集体声明配置项
+  // 获取整体配置项
+  const config = hexo.config.swiper || hexo.theme.config.swiper;
+  if (!(config && config.enable)) return;
+
   const data = {
     pjaxenable: hexo.theme.config.pjax.enable,
     enable_page: config.enable_page ? config.enable_page : "all",
@@ -40,40 +35,33 @@ hexo.extend.filter.register('after_generate', function () {
     layout_type: config.layout.type,
     layout_name: config.layout.name,
     layout_index: config.layout.index ? config.layout.index : 0,
-    // 使用 default_img 替换 error_img，且支持从配置中传递
     default_img: config.default_img ? urlFor(config.default_img) : "https://npm.elemecdn.com/akilar-candyassets/image/loading.gif",
-    use_default_img_mode: config.use_default_img_mode || false,  // New setting for default image mode
     insertposition: config.insertposition ? config.insertposition : "afterbegin",
     swiper_list: swiper_list,
     default_descr: config.default_descr ? config.default_descr : "再怎么看我也不知道怎么描述它的啦！",
     swiper_css: config.swiper_css ? urlFor(config.swiper_css) : "https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css",
-    swiper_js: config.swiper_js ? urlFor(config.swiper_js) : "https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js",
+    swiper_js: config.swiper_js ? urlFor(config.swper_js) : "https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js",
     custom_css: config.custom_css ? urlFor(config.custom_css) : "https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css",
-    custom_js: config.custom_js ? urlFor(config.custom_js) : "https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"
-  }
+    custom_js: config.custom_js ? urlFor(config.custom_js) : "https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js",
+    urlFor: urlFor  // 将 urlFor 函数传递给模板
+  };
+
   // 渲染页面
   const temple_html_text = config.temple_html ? config.temple_html : pug.renderFile(path.join(__dirname, './lib/html.pug'), data);
 
-  //cdn资源声明
-  const css_text = `<link rel="stylesheet" href="${data.swiper_css}" media="print" onload="this.media='all'"><link rel="stylesheet" href="${data.custom_css}" media="print" onload="this.media='all'">`
-  const js_text = `<script defer src="${data.swiper_js}"></script><script defer data-pjax src="${data.custom_js}"></script>`
+  // 注入样式和脚本
+  const css_text = `<link rel="stylesheet" href="${data.swiper_css}" media="print" onload="this.media='all'"><link rel="stylesheet" href="${data.custom_css}" media="print" onload="this.media='all'">`;
+  const js_text = `<script defer src="${data.swiper_js}"></script><script defer data-pjax src="${data.custom_js}"></script>`;
 
-  //注入容器声明
-  var get_layout
-  // 若指定为class类型的容器
+  var get_layout;
   if (data.layout_type === 'class') {
-    get_layout = `document.getElementsByClassName('${data.layout_name}')[${data.layout_index}]`
-  }
-  // 若指定为id类型的容器
-  else if (data.layout_type === 'id') {
-    get_layout = `document.getElementById('${data.layout_name}')`
-  }
-  // 若未指定容器类型，默认使用id查询
-  else {
-    get_layout = `document.getElementById('${data.layout_name}')`
+    get_layout = `document.getElementsByClassName('${data.layout_name}')[${data.layout_index}]`;
+  } else if (data.layout_type === 'id') {
+    get_layout = `document.getElementById('${data.layout_name}')`;
+  } else {
+    get_layout = `document.getElementById('${data.layout_name}')`;
   }
 
-  // 挂载容器脚本
   var user_info_js = `<script data-pjax>
   function ${pluginname}_injector_config(){
     var parent_div_git = ${get_layout};
@@ -98,21 +86,11 @@ hexo.extend.filter.register('after_generate', function () {
   else if (epage === cpage){
     ${pluginname}_injector_config();
   }
-  </script>`
+  </script>`;
 
-  // 注入用户脚本
+  // 注入资源到页面
   hexo.extend.injector.register('body_end', user_info_js, "default");
-  // 注入样式资源
   hexo.extend.injector.register('body_end', js_text, "default");
-  // 注入脚本资源
   hexo.extend.injector.register('head_end', css_text, "default");
 
-})
-
-// 注册优先级帮助器
-hexo.extend.helper.register('priority', function(){
-  // 过滤器优先级，priority 值越低，过滤器会越早执行，默认priority是10
-  const pre_priority = hexo.config.swiper.priority || hexo.theme.config.swiper.priority
-  const priority = pre_priority ? pre_priority : 10
-  return priority
-})
+});
