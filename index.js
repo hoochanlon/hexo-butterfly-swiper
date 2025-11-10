@@ -63,10 +63,10 @@ hexo.extend.filter.register('after_generate', function () {
     insertposition: config.insertposition ? config.insertposition : "afterbegin",
     swiper_list: swiper_list,
     default_descr: config.default_descr ? config.default_descr : "再怎么看我也不知道怎么描述它的啦！",
-    swiper_css: config.swiper_css ? config.swiper_css : "https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css",
-    swiper_js: config.swiper_js ? config.swiper_js : "https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js",
-    custom_css: config.custom_css ? config.custom_css : "https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css",
-    custom_js: config.custom_js ? config.custom_js : "https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js",
+    swiper_css: config.swiper_css ? config.swiper_css : "https://cdn.jsdelivr.net/npm/hexo-butterfly-swiper-x/lib/swiper.min.css",
+    swiper_js: config.swiper_js ? config.swiper_js : "https://cdn.jsdelivr.net/npm/hexo-butterfly-swiper-x/lib/swiper.min.js",
+    custom_css: config.custom_css ? config.custom_css : "https://cdn.jsdelivr.net/npm/hexo-butterfly-swiper-x/lib/swiperstyle.css",
+    custom_js: config.custom_js ? config.custom_js : "https://cdn.jsdelivr.net/npm/hexo-butterfly-swiper-x/lib/swiper_init.js",
     urlFor: urlFor
   };
 
