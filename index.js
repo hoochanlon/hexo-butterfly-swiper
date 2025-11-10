@@ -1,5 +1,4 @@
 'use strict';
-
 const pluginname = 'butterfly_swiper'
 const pug = require('pug');
 const path = require('path');
@@ -23,6 +22,7 @@ hexo.extend.filter.register('after_generate', function () {
   const config = hexo.config.swiper || hexo.theme.config.swiper;
   if (!(config && config.enable)) return;
 
+  const default_img_mode = config.default_img_mode || false;
 
   const data = {
     pjaxenable: hexo.theme.config.pjax.enable,
@@ -33,14 +33,14 @@ hexo.extend.filter.register('after_generate', function () {
     layout_name: config.layout.name,
     layout_index: config.layout.index ? config.layout.index : 0,
     default_img: config.default_img ? urlFor(config.default_img) : "https://npm.elemecdn.com/akilar-candyassets/image/loading.gif",
+    default_img_mode: default_img_mode,  // 新增配置项
     insertposition: config.insertposition ? config.insertposition : "afterbegin",
     swiper_list: swiper_list,
     default_descr: config.default_descr ? config.default_descr : "再怎么看我也不知道怎么描述它的啦！",
-    // 资源路径直接使用完整的 URL 或 `urlFor`
     swiper_css: config.swiper_css ? config.swiper_css : "https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css",
     swiper_js: config.swiper_js ? config.swiper_js : "https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js",
     custom_css: config.custom_css ? config.custom_css : "https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css",
-    custom_js: config.custom_js ? config.custom_js : "https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js", // 确保这里是正确的路径
+    custom_js: config.custom_js ? config.custom_js : "https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js",
     urlFor: urlFor
   };
 
