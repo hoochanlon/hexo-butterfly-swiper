@@ -5,19 +5,28 @@ const path = require('path');
 const urlFor = require('hexo-util').url_for.bind(hexo);
 const util = require('hexo-util');
 
+
 hexo.extend.filter.register('after_generate', function () {
   var posts_list = hexo.locals.get('posts').data;
   var swiper_list = [];
 
-  // 只对启用 random_swiper_index 的文章进行排序
+  // 将所有文章放入 swiper_list 中
   for (var item of posts_list) {
     let itemPath = urlFor(item.path).replace(/\/page\/\d+/, '');  // 去除分页路径
 
     // 如果文章启用了 random_swiper_index，则加入 swiper_list
     if (item.random_swiper_index) {
       swiper_list.push({ ...item, path: itemPath });
+    } else {
+      // 否则按照 swiper_index 排序
+      if (item.swiper_index) {
+        swiper_list.push({ ...item, path: itemPath });
+      }
     }
   }
+
+  // 如果需要按降序排序 swiper_list（数值大的排前面）
+  swiper_list.sort((a, b) => b.swiper_index - a.swiper_index);
 
   // 获取整体配置项
   const config = hexo.config.swiper || hexo.theme.config.swiper;
@@ -35,9 +44,7 @@ hexo.extend.filter.register('after_generate', function () {
 
   // 仅对 swiper_list 中的文章进行随机排序
   if (random_swiper_index) {
-    console.log('Before Shuffle:', swiper_list);  // 打印排序前的内容
     shuffleArray(swiper_list); // 对swiper_list进行随机排序
-    console.log('After Shuffle:', swiper_list);  // 打印排序后的内容
   }
 
   // 获取其他配置项
