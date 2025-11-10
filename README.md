@@ -1,4 +1,4 @@
-# hexo-butterfly-swiper
+# hexo-butterfly-swiper-x
 
 >  [!Important]
 > 修复原版地址拼接错误的问题  
