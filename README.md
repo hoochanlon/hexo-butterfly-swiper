@@ -85,4 +85,6 @@ swiper:
 
 
 # 截图
-![](https://npm.elemecdn.com/akilar-candyassets/image/f4783623.png)
+
+<img width="887" height="236" alt="image" src="https://github.com/user-attachments/assets/56816d57-856e-4997-b9bb-936e105507e0" />
+
