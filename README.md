@@ -23,7 +23,7 @@ swiper:
     type: id
     name: recent-posts
     index: 0
-  default_img: https://hoochanlon.github.io/picx-images-hosting/special/author.png
+  default_img: https://npm.elemecdn.com/akilar-candyassets/image/loading.gif
   use_default_img_mode: true
   swiper_css: "https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" 
   swiper_js: "https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"   
