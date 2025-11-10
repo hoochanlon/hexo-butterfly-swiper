@@ -4,6 +4,7 @@
 
 # 安装
 
+
 1. 安装插件,在博客根目录`[Blogroot]`下打开终端，运行以下指令：
   ```bash
   npm install hexo-butterfly-swiper --save
@@ -42,6 +43,10 @@ swiper:
   |use_default_img_mode|true/false|【可选】所有文章一律使用默认图|
 
 4. 使用方法
+
+>  [!WARNING]
+> 由于图片与轮播内容是一体的，所以暂无法做到指定图片固定
+   
   在文章的`front_matter`中添加`swiper_index`配置项即可。
   ```markdown
   ---
