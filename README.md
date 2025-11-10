@@ -46,7 +46,7 @@ swiper:
   |layout.index|0和正整数|【可选】前提是layout.type为class，因为同一页面可能有多个class，此项用来确认究竟排在第几个顺位|
   |insertposition|text|'beforebegin'：元素自身的前面。'afterbegin'：插入元素内部的第一个子节点之前。'beforeend'：插入元素内部的最后一个子节点之后。'afterend'：插入元素自身的后面。|
   |default_img|url|【可选】默认图|
-  |use_default_img_mode|true/false|【可选】所有文章一律使用默认图|
+  |default_img_mode|true/false|【可选】所有文章一律使用默认图|
 
 4. 使用方法
 
