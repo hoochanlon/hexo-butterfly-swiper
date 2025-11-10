@@ -7,7 +7,8 @@
 > 新增随机排序
 
 >  [!WARNING]
-> 由于图片与轮播内容是一体的，所以暂无法做到指定图片固定。后期测试自定义似乎可以实现，但需要对css设计熟练程度非常高。
+> 由于图片与轮播内容是一体的，所以暂无法做到指定图片固定。  
+> ps：后期测试自定义似乎可以实现，但需要对css设计熟练程度非常高。  
 
 * 原版项目：[Akilarlxh/hexo-butterfly-swiper](https://github.com/Akilarlxh/hexo-butterfly-swiper)
 * 原版文章： [首页轮播图](https://akilar.top/posts/8e1264d1/)
