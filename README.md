@@ -30,6 +30,13 @@
   npm install hexo-butterfly-swiper-x --save
   ```
 
+> [!TIP]
+> 也可使用随机图片API作为默认图，如bing、lorem Picsum、loremFlickr、acg
+> * https://picsum.photos/1200/600
+> * https://bingw.jasonzeng.dev/?index=random
+> * https://random-picture.vercel.app/api 
+> * https://www.loliapi.com/acg/pc
+
 【2】在站点配置文件`_config.yml`或者主题配置文件`_config.butterfly.yml`中添加
 
   ```yaml
